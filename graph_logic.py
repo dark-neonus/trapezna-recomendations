@@ -142,7 +142,7 @@ def calculate_products_power(graph: dict[str, list[str]]) -> dict[str, int]:
     ... }
     >>> calculate_products_power(graph)
     {'product_a': 4, 'product_b': 3, 'product_c': 3, 'product_d': 1}
-    
+
     """
     product_power = {}
 
@@ -167,10 +167,16 @@ def sort_dishes(dishes_power: dict[str, int]) -> list[str]:
         list[str]: sorted list of dishes
 
     Example:
-    ...
+    >>> dishes_power = {'product_a': 4, 'product_b': 3, 'product_c': 3, 'product_d': 1}
+    >>> sort_dishes(dishes_power)
+    ['product_a', 'product_b', 'product_c', 'product_d']
+    >>> dishes_power = {'product_a': 1, 'product_b': 3, 'product_c': 3, 'product_d': 15}
+    >>> sort_dishes(dishes_power)
+    ['product_d', 'product_b', 'product_c', 'product_a']
     """
-    pass
-
+    dish_and_power = sorted(list(dishes_power.items()), key = lambda x: x[1], reverse = True)
+    list_of_dishes = [dish[0] for dish in dish_and_power]
+    return list_of_dishes
 
 
 if __name__ == "__main__":
