@@ -116,7 +116,7 @@ def divide_dishes_by_type(dishes: list[str, int]) -> tuple[list[str], list[str],
 
 
 # Oleksii
-def calculate_products_power(graph: Graph) -> dict[str, int]:
+def calculate_products_power(graph: dict[str, list[str]]) -> dict[str, int]:
     """ Calculate power of all product based on their
         connections in `graph`.
 
@@ -128,9 +128,16 @@ def calculate_products_power(graph: Graph) -> dict[str, int]:
             and value is power of product
     
     Example:
-    ... 
     """
-    pass
+    product_power = {}
+
+    for products in graph.values():
+        for product in products:
+            if product in product_power:
+                product_power[product] += 1
+            else:
+                product_power[product] = 1
+    return product_power
 
 
 def sort_dishes(dishes_power: dict[str, int]) -> list[str]:
