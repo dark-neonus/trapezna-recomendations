@@ -175,8 +175,7 @@ def sort_dishes(dishes_power: dict[str, int]) -> list[str]:
     ['product_d', 'product_b', 'product_c', 'product_a']
     """
     dish_and_power = sorted(list(dishes_power.items()), key = lambda x: x[1], reverse = True)
-    list_of_dishes = [dish[0] for dish in dish_and_power]
-    return list_of_dishes
+    return [dish[0] for dish in dish_and_power]
 
 
 if __name__ == "__main__":
