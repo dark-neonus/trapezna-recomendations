@@ -62,6 +62,23 @@ def get_matrix_height(matrix: Matrix) -> int:
     """
     return len(matrix)
 
+def fill_matrix(matrix: Matrix, fill_value: str):
+    """ Fill matrix with given value
+
+    Args:
+        matrix (Matrix): matrix to fill
+        fill_value (str): value to set to all tiles in given matrix
+    
+    Examples:
+    >>> matrix = [['1', '2', '3'], ['a', 'b', 'c']]
+    >>> fill_matrix(matrix, '.')
+    >>> matrix
+    [['.', '.', '.'], ['.', '.', '.']]
+    """
+    for y in range(get_matrix_height(matrix)):
+        for x in range(get_matrix_width(matrix)):
+            matrix[y][x] = fill_value
+
 def matrix_get_at(x: int, y: int, matrix: Matrix, silent_erros: bool=False) -> str | None:
     """ Return value of tile at (y, x) in matrix
 
