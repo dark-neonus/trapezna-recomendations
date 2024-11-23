@@ -1,4 +1,5 @@
 """ Module that contain all tools to work Matrix """
+import curses
 from typing import NewType
 
 # Just create new type shortcut called "Matrix"
@@ -162,6 +163,24 @@ def draw_matrix_on_matrix(source_matrix: Matrix, destination_matrix: Matrix,
                 matrix = destination_matrix,
                 silent_erros = silent_erros
                 )
+
+def draw_matrix_on_screen(stdscr: curses.window, matrix: Matrix, reverse_y: bool=False):
+    """ Draw matrix on curses screen
+
+    Args:
+        stdscr (curses.window): curses window object to draw on
+        matrix (Matrix): matrix to draw
+        reverse_y (bool, optional): Indecate if reverse y when drawing.
+            When set to False, (0, 0) will be at top-left corner.
+            When ser to True, (0, 0) will be at bottom-left corner.
+            Defaults to False.
+    """
+    if reverse_y:
+        for y, row in enumerate(matrix):
+            stdscr.addstr(get_matrix_height(matrix) - y - 1, 0, "".join(row))
+    else:
+        for y, row in enumerate(matrix):
+            stdscr.addstr(y, 0, "".join(row))
 
 if __name__ == "__main__":
     import doctest
