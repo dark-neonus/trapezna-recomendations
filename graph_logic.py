@@ -1,5 +1,6 @@
 """ Module with main graph and recommendation logic """
 
+import json
 from typing import NewType
 
 # Just create new type shortcut called "Graph"
@@ -56,7 +57,7 @@ def add_session(graph: Graph, products: list[str]):
 
 # Path to database(just json) with all dishes
 # and information about each dish
-FOOD_DATABASE_FILE = "path_to_food_database"
+FOOD_DATABASE_FILE = 'menu.json'
 
 # WARNING: We have no separate list of products.
 #   To add new product we need to add it to some dish
@@ -101,12 +102,20 @@ def dishes_to_products(dishes: list[str]) -> list[str]:
         list[str]: products presented in `dishes`
     
     Examples:
-    ...
+    >>> dishes_to_products(['Крем суп з броколі','Макарони з сиром','Компот'])
+    ['Броколі', 'Тісто', 'Сир', 'Ягоди']
     """
-    pass
+    with open(FOOD_DATABASE_FILE, 'r', encoding="utf-8") as file:
+        menu = json.load(file)
+    menu = structure_menu(menu)
+    product_query = []
+    for dish in dishes:
+        product_query.extend(menu[dish][-1])
+    return product_query
+
 
 def calculate_dishes_power(products_power: dict[str, int]
-                           ) -> dict[str, int]:
+                            ) -> dict[str, int]:
     """ Calculate power of all dishes.
     List of all dishes we get from `FOOD_DATABASE_FILE`.
 
