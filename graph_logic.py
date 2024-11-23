@@ -62,6 +62,33 @@ FOOD_DATABASE_FILE = "path_to_food_database"
 #   To add new product we need to add it to some dish
 
 # Iia
+def structure_menu(menu: dict[dict[str]]) -> dict[str]:
+    """ Auxiliary function for transforming dictionary of dictionaries,
+    which is a menu, into simple dictionary. Turns structure
+    { type:
+        dish: [products],
+        dish: [products]
+    }
+    into
+    {   dish: (type, [products]),
+        dish: (type, [products])
+    }
+    
+    This simplifies working with menu data by flattening it while 
+    preserving the association between dishes, their types, and products.
+
+    Args:
+        menu (dict): a menu which has to be restructurised
+
+    Returns:
+        dict: a menu with valid structure
+    """
+    new_menu = {}
+    for dish_type in menu:
+        for dish in menu[dish_type]:
+            new_menu[dish] = (dish_type, menu[dish_type][dish])
+    return new_menu
+
 def dishes_to_products(dishes: list[str]) -> list[str]:
     """ Return all productes presented in given `dishes`
     based on information in `FOOD_DATABASE_FILE`.
