@@ -128,9 +128,22 @@ def calculate_dishes_power(products_power: dict[str, int]
             and value is dishes power
     
     Example:
-    ...
+    >>> query = calculate_dishes_power({"Броколі":1, "Картопля":10, "Буряк":3})
+    >>> list(query.items())[:3]
+    [('Крем суп з броколі', 1), ('Борщ з мʼясом', 13), ('Суп грибний', 10)]
     """
-    pass
+    with open(FOOD_DATABASE_FILE, 'r', encoding="utf-8") as file:
+        menu = json.load(file)
+    menu = structure_menu(menu)
+    query = {}
+    for dish, dish_info in menu.items():
+        power = 0
+        for product, product_p in products_power.items():
+            power += product_p if product in dish_info[-1] else 0
+        query[dish] = power
+    return query
+
+
 
 def divide_dishes_by_type(dishes: list[str, int]) -> tuple[list[str], list[str], list[str]]:
     """ Divide list of sorted dishes into three lists
