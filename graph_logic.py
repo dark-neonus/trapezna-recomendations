@@ -145,23 +145,27 @@ def calculate_dishes_power(products_power: dict[str, int]
 
 
 
-def divide_dishes_by_type(dishes: list[str, int]) -> tuple[list[str], list[str], list[str]]:
+def divide_dishes_by_type(dishes: list[str]) -> tuple[list[str], list[str], list[str]]:
     """ Divide list of sorted dishes into three lists
     by dish type. Info from `FOOD_DATABASE_FILE`
 
     Args:
-        dishes (list[str, int]): list of sorted dishes
+        dishes (list[str]): list of sorted dishes
 
     Returns:
         tuple[list[str], list[str], list[str]]: three lists of sorted dishes
             divided by their type
 
     Example:
-    ...
+    >>> divide_dishes_by_type(['Борщ з мʼясом', 'Суп грибний', 'Крем суп з броколі', \
+        'Піца', 'Кава'])
+    (['Борщ з мʼясом', 'Суп грибний', 'Крем суп з броколі'], ['Піца'], ['Кава'])
     """
-    pass
-
-
+    with open(FOOD_DATABASE_FILE, 'r', encoding="utf-8") as file:
+        menu = json.load(file)
+    menu = list(menu.items())
+    query = [[dish for dish in dishes if dish in section[1]] for section in menu]
+    return tuple(query)
 
 
 # Oleksii
