@@ -5,13 +5,15 @@ import curses
 from ui_tools.matrix import (Matrix, create_matrix, fill_matrix,
                              draw_matrix_on_screen, draw_matrix_on_matrix)
 from ui_tools.ui_toolbox import create_text_field
-from graph_logic import divide_dishes_by_type
+import graph_logic
 
 UI_WIDTH = 90
 UI_HEIGHT = 30
 
 DISH_PER_DISPLAY = 5
 DISH_BLOCK_WIDTH = UI_WIDTH // DISH_PER_DISPLAY - 2
+
+GRAPH_FILE = "graph.json"
 
 # Food data for testing
 TESTING_FOOD_DATA = [
@@ -79,20 +81,15 @@ def main_loop(testing_mode: bool=False):
     # Terminal screen matrix
     screen_matrix = create_matrix(UI_WIDTH, UI_HEIGHT)
     # Variable to hold food values for each food row
-    typed_food = [[], [], [], []]
-    dishes_dx = [0 for _ in range(len(typed_food))]
+    typed_dishes = [[], [], [], []]
+    dishes_dx = [0 for _ in range(len(typed_dishes))]
     cursor_position = (0, 0)
     selected_dishes = []
 
-    if testing_mode:
-        typed_food = TESTING_FOOD_DATA
-    else:
-        raise NotImplementedError()
-    typed_food = typed_food + [["Купити"]]
+    typed_dishes = get_sorted_dishes(selected_dishes, typed_dishes, testing_mode)
 
     while ui_runs:
-        
-        build_ui(screen_matrix, typed_food,
+        build_ui(screen_matrix, typed_dishes,
                 cursor_position, selected_dishes,
                 dishes_dx
                 )
@@ -122,24 +119,28 @@ def main_loop(testing_mode: bool=False):
         elif key in [ord("s"), ord("S"), curses.KEY_DOWN]:
             cursor_position = (
                 cursor_position[0],
-                min(cursor_position[1] + 1, len(typed_food) - 1)
+                min(cursor_position[1] + 1, len(typed_dishes) - 1)
                 )
         elif key in [curses.KEY_ENTER, ord("\n"), ord(" ")]:
-            if cursor_position == [0, 3]:
-                ...
+            if cursor_position == (0, 3):
+                typed_dishes = get_sorted_dishes(selected_dishes,
+                                                 typed_dishes,
+                                                 testing_mode)
+                selected_dishes = []
+                cursor_position = (0, 0)
 
-            if cursor_position in selected_dishes:
+            elif cursor_position in selected_dishes:
                 selected_dishes.remove(cursor_position)
             else:
                 selected_dishes.append(cursor_position[:])
 
         cursor_position = (
-                min(cursor_position[0], len(typed_food[cursor_position[1]]) - 1),
+                min(cursor_position[0], len(typed_dishes[cursor_position[1]]) - 1),
                 cursor_position[1]
                 )
         dishes_dx[cursor_position[1]] = min(
                             max(0, cursor_position[0] - 2),
-                            max(len(typed_food[cursor_position[1]]) - DISH_PER_DISPLAY, 0)
+                            max(len(typed_dishes[cursor_position[1]]) - DISH_PER_DISPLAY, 0)
                             )
 
 
@@ -150,23 +151,50 @@ def build_ui(screen_matrix: Matrix, typed_food: tuple[list[str], list[str], list
              ) -> Matrix:
     """ Build UI screen matrix """
     fill_matrix(screen_matrix, " ")
-    for row in range(len(typed_food)):
-        for column in range(min(DISH_PER_DISPLAY, len(typed_food[row]))):
+    for row, typed_food_row in enumerate(typed_food):
+        for column in range(min(DISH_PER_DISPLAY, len(typed_food_row))):
             frame_symbol = None
             if (column + dishes_dx[row], row) == cursor_position:
                 frame_symbol = "█"
             elif (column + dishes_dx[row], row) in selected_dishes:
                 frame_symbol = "░"
             dish_frame = create_text_field(
-                f"{column + dishes_dx[row]}) {typed_food[row][column + dishes_dx[row]]}",
+                f"{column + dishes_dx[row]}) {typed_food_row[column + dishes_dx[row]]}",
                 DISH_BLOCK_WIDTH, [3, 5, 7, 5, 3][column], frame_symbol
                 )
             draw_matrix_on_matrix(dish_frame, screen_matrix, column*(DISH_BLOCK_WIDTH+2), row*8)
 
-def buy_button_pressed(selected_dishes: list[str],
-               typed_dishes: list[list[str], list[str], list[str]]
+def get_sorted_dishes(selected_dishes: list[str],
+               typed_dishes: list[list[str], list[str], list[str]],
+               testing_mode: bool = False
                ) -> list[list[str], list[str], list[str]]:
-    ...
+    # Case when nothing was selected dont change anything
+    if testing_mode:
+        return TESTING_FOOD_DATA + [["Купити"]]
+
+    if len(selected_dishes) == 0:
+        return typed_dishes
+
+    # Creating names of selected dishes from indexes and sorted list
+    selected_dishes_names = []
+    for i, dish_type_list in enumerate(typed_dishes):
+        for j, dish_name in enumerate(dish_type_list):
+            if (j, i) in selected_dishes:
+                selected_dishes_names.append(dish_name)
+
+    graph = graph_logic.load_graph(GRAPH_FILE)
+    selected_products = graph_logic.dishes_to_products(selected_dishes_names)
+    graph_logic.add_session(graph, selected_products)
+    graph_logic.save_graph(graph, GRAPH_FILE)
+
+    dishes_power = graph_logic.calculate_dishes_power(
+        graph_logic.calculate_products_power(graph)
+    )
+    new_typed_dishes = graph_logic.divide_dishes_by_type(
+        graph_logic.sort_dishes(dishes_power)
+    )
+
+    return new_typed_dishes + [["Купити"]]
 
 if __name__ == "__main__":
     main_loop(testing_mode=True)
