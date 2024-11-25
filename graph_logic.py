@@ -179,7 +179,7 @@ def divide_dishes_by_type(dishes: list[str]) -> tuple[list[str], list[str], list
 
 
 # Oleksii
-def calculate_products_power(graph: Graph) -> dict[str, int]:
+def calculate_products_power(graph: dict[str, list[str]]) -> dict[str, int]:
     """ Calculate power of all product based on their
         connections in `graph`.
 
@@ -191,9 +191,31 @@ def calculate_products_power(graph: Graph) -> dict[str, int]:
             and value is power of product
     
     Example:
-    ... 
+    >>> graph = {
+    ...     "session_1" : ["product_1", "product_2", "product_3", "product_1"],
+    ...     "session_2" : ["product_7", "product_9"]
+    ... }
+    >>> calculate_products_power(graph)
+    {'product_1': 2, 'product_2': 1, 'product_3': 1, 'product_7': 1, 'product_9': 1}
+
+    >>> graph = {
+    ...     "session_1": ["product_a", "product_b", "product_c", "product_a", "product_a"],
+    ...     "session_2": ["product_b", "product_c", "product_c"],
+    ...     "session_3": ["product_a", "product_d", "product_b"]
+    ... }
+    >>> calculate_products_power(graph)
+    {'product_a': 4, 'product_b': 3, 'product_c': 3, 'product_d': 1}
+
     """
-    pass
+    product_power = {}
+
+    for products in graph.values():
+        for product in products:
+            if product in product_power:
+                product_power[product] += 1
+            else:
+                product_power[product] = 1
+    return product_power
 
 
 def sort_dishes(dishes_power: dict[str, int]) -> list[str]:
@@ -208,10 +230,15 @@ def sort_dishes(dishes_power: dict[str, int]) -> list[str]:
         list[str]: sorted list of dishes
 
     Example:
-    ...
+    >>> dishes_power = {'product_a': 4, 'product_b': 3, 'product_c': 3, 'product_d': 1}
+    >>> sort_dishes(dishes_power)
+    ['product_a', 'product_b', 'product_c', 'product_d']
+    >>> dishes_power = {'product_a': 1, 'product_b': 3, 'product_c': 3, 'product_d': 15}
+    >>> sort_dishes(dishes_power)
+    ['product_d', 'product_b', 'product_c', 'product_a']
     """
-    pass
-
+    dish_and_power = sorted(list(dishes_power.items()), key = lambda x: x[1], reverse = True)
+    return [dish[0] for dish in dish_and_power]
 
 
 if __name__ == "__main__":
