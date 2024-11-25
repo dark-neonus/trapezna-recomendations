@@ -1,13 +1,13 @@
 """ Module with main graph and recommendation logic """
 
 from typing import NewType
-
+import json
 # Just create new type shortcut called "Graph"
 # So when you use "Graph", python understand it as "dict[str, list[str]]"
 Graph = NewType("Graph", dict[str, list[str]])
 
 
-# Maria
+# Mariia
 def save_graph(graph: Graph, filename: str):
     """ Save graph to file (json)
 
@@ -18,7 +18,8 @@ def save_graph(graph: Graph, filename: str):
     Examples:
     ...
     """
-    pass
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(graph, f, ensure_ascii=False, indent=4)
 
 def load_graph(filename: str) -> Graph:
     """ Read and return graph from file `filename` (json)
@@ -32,7 +33,9 @@ def load_graph(filename: str) -> Graph:
     Examples:
     ...
     """
-    pass
+    with open(filename, 'r', encoding='8-utf') as f:
+        data = json.load(f)
+    return data
 
 def add_session(graph: Graph, products: list[str]):
     """ Modify `graph` by adding session with `products` to it
@@ -49,10 +52,17 @@ def add_session(graph: Graph, products: list[str]):
         products (list[str]): products from new session
 
     Examples:
-    ...
+    >>> add_session({}, ["product_1", "product_4", "product_3", "product_2", "product_9"])
+    {'session_1': ['product_1', 'product_4', 'product_3', 'product_2', 'product_9']}
+    >>> add_session({'session_1': ['product_1', 'product_4', 'product_3', 'product_2', \
+'product_9']},\
+ ["product_10", "product_45", "product_33", "product_26", "product_9"])
+    {'session_1': ['product_1', 'product_4', 'product_3', 'product_2', 'product_9'], 'session_2':\
+ ['product_10', 'product_45', 'product_33', 'product_26', 'product_9']}
     """
-    pass
-
+    num_of_sess = len(graph)
+    graph[f'session_{num_of_sess+1}'] = products
+    return graph
 
 # Path to database(just json) with all dishes
 # and information about each dish
