@@ -4,14 +4,16 @@ import curses
 
 from ui_tools.matrix import (Matrix, create_matrix, fill_matrix,
                              draw_matrix_on_screen, draw_matrix_on_matrix)
-from ui_tools.ui_toolbox import create_text_field
+from ui_tools.ui_toolbox import create_text_field, add_frame_to_matrix
 import graph_logic
 
-UI_WIDTH = 90
-UI_HEIGHT = 30
+
 
 DISH_PER_DISPLAY = 5
-DISH_BLOCK_WIDTH = UI_WIDTH // DISH_PER_DISPLAY - 2
+DISH_BLOCK_WIDTH = 16
+
+UI_WIDTH = (DISH_BLOCK_WIDTH + 2) * DISH_PER_DISPLAY + 2
+UI_HEIGHT = 30
 
 GRAPH_FILE = "graph.json"
 
@@ -162,7 +164,9 @@ def build_ui(screen_matrix: Matrix, typed_food: tuple[list[str], list[str], list
                 f"{column + dishes_dx[row]}) {typed_food_row[column + dishes_dx[row]]}",
                 DISH_BLOCK_WIDTH, [3, 5, 7, 5, 3][column], frame_symbol
                 )
-            draw_matrix_on_matrix(dish_frame, screen_matrix, column*(DISH_BLOCK_WIDTH+2), row*8)
+            draw_matrix_on_matrix(dish_frame, screen_matrix,
+                                column*(DISH_BLOCK_WIDTH+2) + 2, row*8 +2)
+    add_frame_to_matrix(screen_matrix)
 
 def get_sorted_dishes(selected_dishes: list[str],
                typed_dishes: list[list[str], list[str], list[str]],
