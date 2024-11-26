@@ -25,7 +25,7 @@ def organise_graph(graph: Graph):
 
 
 def graph_visualization(edge_list):
-    """ Function that make graph visualization.
+    """ Function that make graph visualization."""
     pass
 
 
@@ -40,14 +40,11 @@ def generate_graph_png(edge_list, output_file="graph.png"):
         None
     """
 
-    dot_content = "digraph {\n"
-    for tple in edge_list:
-        dot_content += f"{tple[0]} -> {tple[1]}\n"
-    dot_content += "}"
-    return dot_content
+    dot = Digraph(format='png')
+    for edge in edge_list:
+        dot.edge(edge[0], edge[1])
 
-# print(graph_visualization([('session_1', 'product_1'), ('session_1', 'product_2'), ('session_1', 'product_3'), ('session_1', 'product_1'), ('session_2', 'product_7'), ('session_2', 'product_9')]))
-
+    dot.render(output_file, cleanup=True)
 
 def test_visualization():
     """
