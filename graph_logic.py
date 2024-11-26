@@ -34,7 +34,7 @@ def load_graph(filename: str) -> Graph:
     Examples:
     ...
     """
-    with open(filename, 'r', encoding='8-utf') as f:
+    with open(filename, 'r', encoding='utf-8') as f:
         data = json.load(f)
     return data
 
