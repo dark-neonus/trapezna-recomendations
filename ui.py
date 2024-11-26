@@ -172,20 +172,20 @@ def get_sorted_dishes(selected_dishes: list[str],
     if testing_mode:
         return TESTING_FOOD_DATA + [["Купити"]]
 
-    if len(selected_dishes) == 0:
-        return typed_dishes
-
-    # Creating names of selected dishes from indexes and sorted list
-    selected_dishes_names = []
-    for i, dish_type_list in enumerate(typed_dishes):
-        for j, dish_name in enumerate(dish_type_list):
-            if (j, i) in selected_dishes:
-                selected_dishes_names.append(dish_name)
-
     graph = graph_logic.load_graph(GRAPH_FILE)
-    selected_products = graph_logic.dishes_to_products(selected_dishes_names)
-    graph_logic.add_session(graph, selected_products)
-    graph_logic.save_graph(graph, GRAPH_FILE)
+
+    if len(selected_dishes) != 0:
+
+        # Creating names of selected dishes from indexes and sorted list
+        selected_dishes_names = []
+        for i, dish_type_list in enumerate(typed_dishes):
+            for j, dish_name in enumerate(dish_type_list):
+                if (j, i) in selected_dishes:
+                    selected_dishes_names.append(dish_name)
+
+        selected_products = graph_logic.dishes_to_products(selected_dishes_names)
+        graph_logic.add_session(graph, selected_products)
+        graph_logic.save_graph(graph, GRAPH_FILE)
 
     dishes_power = graph_logic.calculate_dishes_power(
         graph_logic.calculate_products_power(graph)
@@ -194,7 +194,7 @@ def get_sorted_dishes(selected_dishes: list[str],
         graph_logic.sort_dishes(dishes_power)
     )
 
-    return new_typed_dishes + [["Купити"]]
+    return list(new_typed_dishes) + [["Купити"]]
 
 if __name__ == "__main__":
     main_loop(testing_mode=True)
