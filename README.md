@@ -28,9 +28,7 @@ This project implements a recommendation system for the "Trapezna," based on the
 ## Technologies Used
 
 - **Programming Language:** Python
-- **Graph Libraries:** NetworkX, Matplotlib (for graph generation and visualization)
-- **Data Handling:** Pandas, SQLite (or any database solution for user session tracking)
-- **Web Framework (optional):** Flask/Django (if the application has a web-based interface)
+- **Graph Libraries:** graphviz (for graph visualization)
 
 ## Installation
 
