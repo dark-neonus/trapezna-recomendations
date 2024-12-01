@@ -2,7 +2,6 @@
 
 import json
 from typing import NewType
-import json
 # Just create new type shortcut called "Graph"
 # So when you use "Graph", python understand it as "dict[str, list[str]]"
 Graph = NewType("Graph", dict[str, list[str]])
