@@ -39,8 +39,28 @@ This project implements a recommendation system for the "Trapezna," based on the
    ```
 
 2. Install required dependencies:
+   ### Install the Necesarry Library: graphviz
    ```bash
-   pip install -r requirements.txt
+   pip install graphviz
+   ```
+   #### Instalation steps:
+   - Windows
+   1. Download the Graphviz installer from Graphviz Downloads.
+   2. Run it through and follow the prompt.
+   3. Add the Graphviz bin directory to your system PATH.
+
+   - MacOS: use Homebrew
+   ```bash
+   brew install graphviz
+   ```
+   - Linux:
+   Debian-based:
+   ```bash
+   sudo apt-get install graphviz
+   ```
+   Red Hat-based:
+   ```bash
+   sudo yum install graphviz
    ```
 
 3. Run the application:
