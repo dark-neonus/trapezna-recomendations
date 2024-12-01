@@ -57,8 +57,8 @@ This project implements a recommendation system for the "Trapezna," based on the
 
 ## Thanks to developers
 
-Nazar [pasichnyk.pn@ucu.edu.ua] 
-Daryna [onopriienko.pn@ucu.edu.ua] 
-Iia [maharyta.pn@ucu.edu.ua]
-Maria [hamaniuk.pn@ucu.edu.ua]
-Oleksii [lasiichuk.pn@ucu.edu.ua]
+- Nazar [pasichnyk.pn@ucu.edu.ua] 
+- Daryna [onopriienko.pn@ucu.edu.ua] 
+- Iia [maharyta.pn@ucu.edu.ua]
+- Maria [hamaniuk.pn@ucu.edu.ua]
+- Oleksii [lasiichuk.pn@ucu.edu.ua]
