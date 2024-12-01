@@ -36,8 +36,8 @@ This project implements a recommendation system for the "Trapezna," based on the
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo-name/pagerank-recommendation-app.git
-   cd pagerank-recommendation-app
+   git clone https://github.com/dark-neonus/trapezna-recomendations.git
+   cd trapezna-recomendations
    ```
 
 2. Install required dependencies:
@@ -45,41 +45,18 @@ This project implements a recommendation system for the "Trapezna," based on the
    pip install -r requirements.txt
    ```
 
-3. Configure the database (if applicable):
+3. Run the application:
    ```bash
-   python setup_database.py
-   ```
-
-4. Run the application:
-   ```bash
-   python app.py
+   python3 main.py
    ```
 
 ## Usage
 
 1. Launch the application.
-2. Log in or create a user profile.
-3. Browse and order dishes from "Trapezna."
-4. View personalized dish recommendations based on your preferences.
-5. Explore the graph visualization to understand ingredient connections.
-
-## Future Enhancements
-
-- Adding support for dietary restrictions and allergens.
-- Enhancing the graph visualization with interactive features.
-- Implementing a feedback loop to refine recommendations.
-
-## Contributing
-
-We welcome contributions! Please follow these steps:
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Submit a pull request with a detailed explanation of your changes.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
+2. Browse and order dishes from "Trapezna."
+3. For the next time view personalized dish recommendations based on your preferences.
+4. Explore the graph visualization to understand ingredient connections.
 
 ## Contact
 
-For any inquiries or support, please contact us at [your-email@example.com].
+For any inquiries or support, please contact us at [pasichnyk.pn@ucu.edu.ua] or [maharyta.pn@ucu.edu.ua].
