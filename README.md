@@ -12,7 +12,7 @@ This project implements a recommendation system for the "Trapezna," based on the
    - Recommends dishes that contain the user's preferred products.
 
 2. **Graph Visualization:**
-   - Displays the connections between user sessions and their dishes' ingredients as an interactive graph.
+   - Displays the connections between user sessions and the dishes' ingredients as an interactive graph.
 
 ## How It Works
 
@@ -55,6 +55,10 @@ This project implements a recommendation system for the "Trapezna," based on the
 3. For the next time view personalized dish recommendations based on your preferences.
 4. Explore the graph visualization to understand ingredient connections.
 
-## Contact
+## Thanks to developers
 
-For any inquiries or support, please contact us at [pasichnyk.pn@ucu.edu.ua] or [maharyta.pn@ucu.edu.ua].
+Nazar [pasichnyk.pn@ucu.edu.ua] 
+Daryna [onopriienko.pn@ucu.edu.ua] 
+Iia [maharyta.pn@ucu.edu.ua]
+Maria [hamaniuk.pn@ucu.edu.ua]
+Oleksii [lasiichuk.pn@ucu.edu.ua]
