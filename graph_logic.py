@@ -34,9 +34,12 @@ def load_graph(filename: str) -> Graph:
     Examples:
     ...
     """
-    with open(filename, 'r', encoding='8-utf') as f:
-        data = json.load(f)
-    return data
+    try:
+        with open(filename, 'r', encoding='8-utf') as f:
+            data = json.load(f)
+        return data
+    except FileNotFoundError:
+        return dict()
 
 def add_session(graph: Graph, products: list[str]):
     """ Modify `graph` by adding session with `products` to it
