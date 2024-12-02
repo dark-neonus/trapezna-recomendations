@@ -1,14 +1,16 @@
 """ Module to make graph visualization """
 
 import doctest
+import doctest
 from graph_logic import Graph
 from graphviz import Digraph
+
 
 def organise_graph(graph: Graph):
     '''
     Converts Graph type (dict[str, list[str]]) to list(tuple)
 
-    Args: 
+    Args:
         graph (dict[str, list[str]]): graph to vizualize
     Returns:
         edge_list (list(tuple)): a list of graph edges
@@ -24,11 +26,6 @@ def organise_graph(graph: Graph):
     return edge_list
 
 
-def graph_visualization(edge_list):
-    """ Function that make graph visualization.
-    pass
-
-
 def generate_graph_png(edge_list, output_file="graph.png"):
     """
     Creates a PNG-image of graph using a list of edges
@@ -38,16 +35,13 @@ def generate_graph_png(edge_list, output_file="graph.png"):
         output_file (str): pathway
     Returns:
         None
+    Example:
     """
+    dot = Digraph(format='png')
+    for edge in edge_list:
+        dot.edge(edge[0], edge[1])
 
-    dot_content = "digraph {\n"
-    for tple in edge_list:
-        dot_content += f"{tple[0]} -> {tple[1]}\n"
-    dot_content += "}"
-    return dot_content
-
-# print(graph_visualization([('session_1', 'product_1'), ('session_1', 'product_2'), ('session_1', 'product_3'), ('session_1', 'product_1'), ('session_2', 'product_7'), ('session_2', 'product_9')]))
-
+    dot.render(output_file, cleanup=True)
 
 def test_visualization():
     """
@@ -62,7 +56,7 @@ def test_visualization():
     print(f"A list of edges:{edges}")
     generate_graph_png(edges, output_file="test_graph")
 
-
 if __name__ == "__main__":
+    doctest.testmod()
     doctest.testmod()
     test_visualization()
