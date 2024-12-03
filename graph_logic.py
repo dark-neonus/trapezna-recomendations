@@ -2,7 +2,6 @@
 
 import json
 from typing import NewType
-import json
 # Just create new type shortcut called "Graph"
 # So when you use "Graph", python understand it as "dict[str, list[str]]"
 Graph = NewType("Graph", dict[str, list[str]])
@@ -34,9 +33,14 @@ def load_graph(filename: str) -> Graph:
     Examples:
     ...
     """
-    with open(filename, 'r', encoding='8-utf') as f:
-        data = json.load(f)
-    return data
+    try:
+        with open(filename, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        return data
+    except FileNotFoundError:
+        with open(filename, 'w', encoding='utf-8') as f:
+            f.write("{\n}")
+        return {}
 
 def add_session(graph: Graph, products: list[str]):
     """ Modify `graph` by adding session with `products` to it

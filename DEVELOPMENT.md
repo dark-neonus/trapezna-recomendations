@@ -1,69 +1,84 @@
-# trapezna-recomendations
+# PageRank-Based Recommendation Application for "Trapezna"
 
-## Elements
-- session
-- dish
-- product
+## Project Overview
 
-## Graph structure
-```python
-graph: dict[str, list[str]]
-{
-    "session_1" : ["product_1", "product_2", "product_3", "product_1"],
-    "session_2" : ["product_7", "product_9"],
-    ...
-}
-```
-> __Warning__: Products can repeat in sessions\
-    example: {"session_1" : ["product_1", "product_2", "product_1"]}
+This project implements a recommendation system for the "Trapezna," based on the PageRank algorithm. The system helps users discover dishes tailored to their preferences by analyzing user sessions and connections between the ingredients in various dishes. Additionally, the application offers a visualization feature to explore these connections as a graph.
 
-## Who doing what
- - `main.py`, `ui.py` - Nazar
- - `graph_logic.py` - Iia, Oleksii, Maria
- -  `graph_visualization.py` - Daryna
+## Features
 
-    > ### Iia:
-    > - `dishes_to_products()`
-    > - `calculate_dishes_power()`
-    > - `divide_dishes_by_type()`
+1. **Personalized Recommendations:**
+   - Analyzes user choices during food orders.
+   - Builds connections between user sessions and dish ingredients.
+   - Recommends dishes that contain the user's preferred products.
 
-    > ### Oleksii:
-    > - `calculate_products_power()`
-    > - `sort_dishes()`
+2. **Graph Visualization:**
+   - Displays the connections between user sessions and the dishes' ingredients as an interactive graph.
 
-    > ### Maria:
-    > - `save_graph()`
-    > - `load_graph()`
-    > - `add_session()`
+## How It Works
 
+1. **Session Analysis:**
+   - Tracks user sessions to identify preferences based on ordered dishes.
+2. **Ingredient Mapping:**
+   - Maps dishes to their ingredients to establish a network of connections.
+3. **PageRank Algorithm:**
+   - Applies the PageRank algorithm to prioritize dishes containing popular or user-favored ingredients.
+4. **Recommendations:**
+   - Generates a ranked list of recommended dishes for the user.
 
-## Logic
-`UI` mean ui and app loop
+## Technologies Used
 
-### Input
-`UI` -[ list of selected dishes in session ]-> `dishes_to_products()` -[ list of selected products in session]-> `add_session()` -[ modified graph ]-> `save_graph()`
+- **Programming Language:** Python
+- **Graph Libraries:** graphviz (for graph visualization)
 
-### Output (Sorting to UI)
-`load_graph()` -[ graph ]-> `calculate_products_power()` -[ dict of products with their powers ]-> `calculate_dishes_power()` -[ dict of dishes with their powers ]-> `sort_dishes()` -[ list of sorted dishes by power ]-> `divide_dishes_by_type()` -[ three list of dishes according to their type, sorted ]-> `UI`
+## Installation
 
-### Visualization
-`UI` -[ just call function ]-> `graph_visualization()`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/dark-neonus/trapezna-recomendations.git
+   cd trapezna-recomendations
+   ```
 
-## Commits style
-Please follow next git commits style for clarity of commits (read about it by link)
-### How make commits
-https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/
+2. Install required dependencies:
+   ### Install the Necesarry Library: graphviz
+   ```bash
+   pip install graphviz
+   ```
+   #### Instalation steps:
+   ##### Windows
+   1. Download the Graphviz installer from Graphviz Downloads.
+   2. Run it through and follow the prompt.
+   3. Add the Graphviz bin directory to your system PATH.
 
-### Structure:
-> \<type>[optional scope]: \<description>
-> 
-> [optional body]
+   ##### MacOS: use Homebrew
+   ```bash
+   brew install graphviz
+   ```
+   ##### Linux:
+   - Debian-based:
+   ```bash
+   sudo apt-get install graphviz
+   ```
+   - Red Hat-based:
+   ```bash
+   sudo yum install graphviz
+   ```
 
-### Examples:
-> feat(file_with_func1.py): write logic for func1() function
-> 
-> Changed documentation a little
+3. Run the application:
+   ```bash
+   python3 main.py
+   ```
 
-> test: write doctests for func2() function
+## Usage
 
-> chore(README.md): fix typo in 3-rd section
+1. Launch the application.
+2. Browse and order dishes from "Trapezna."
+3. For the next time view personalized dish recommendations based on your preferences.
+4. Explore the graph visualization to understand ingredient connections.
+
+## Thanks to developers
+
+- Nazar [pasichnyk.pn@ucu.edu.ua] 
+- Daryna [onopriienko.pn@ucu.edu.ua] 
+- Iia [maharyta.pn@ucu.edu.ua]
+- Maria [hamaniuk.pn@ucu.edu.ua]
+- Oleksii [lasiichuk.pn@ucu.edu.ua]
