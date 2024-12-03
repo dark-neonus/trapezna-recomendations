@@ -205,6 +205,7 @@ def get_sorted_dishes(selected_dishes: list[str],
         graph_logic.add_session(graph, selected_products)
         graph_logic.save_graph(graph, GRAPH_FILE)
 
+    # PageRank here
     dishes_power = graph_logic.calculate_dishes_power(
         graph_logic.calculate_products_power(graph)
     )
