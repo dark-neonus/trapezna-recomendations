@@ -1,7 +1,8 @@
 """ Main script that runs program """
 
-from ui import main_loop, clear_graph
 import argparse
+from ui import main_loop, clear_graph
+
 
 def main():
     """ Main function that runs program """
@@ -11,16 +12,22 @@ def main():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--visualization",
-                        help="run visualization",
+                        help="run visualization animation for graph.json",
+                        action="store_true")
+
+    parser.add_argument("--visualization_png",
+                        help="save png of graph visualization",
                         action="store_true")
 
     parser.add_argument("--clear",
-                        help="clear current graph.json with preferences ",
+                        help="clear current graph.json with preferences",
                         action="store_true")
     # Get given parameters from terminal
     args = parser.parse_args()
 
     if args.visualization:
+        pass
+    elif args.visualization_png:
         pass
     elif args.clear:
         clear_graph()
