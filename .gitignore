@@ -162,3 +162,7 @@ cython_debug/
 #.idea/
 
 graph.json
+
+media
+
+*.png
