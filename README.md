@@ -4,6 +4,15 @@
 
 This project implements a recommendation system for the "Trapezna," based on the PageRank algorithm. The system helps users discover dishes tailored to their preferences by analyzing user sessions and connections between the ingredients in various dishes. Additionally, the application offers a visualization feature to explore these connections as a graph.
 
+## Steps We Implemented
+
+1. **Graph Modeling**
+   - Designed a graph structure to represent sessions and product relationships.
+2. **PageRank Algorithms**
+   - Implemented logic to rank products and dishes based on their connections and importance.
+3. **Recommendations**
+   - Created mechanisms for sorting and recommending dishes based on their calculated importance.
+
 ## Features
 
 1. **Personalized Recommendations:**
@@ -13,6 +22,23 @@ This project implements a recommendation system for the "Trapezna," based on the
 
 2. **Graph Visualization:**
    - Displays the connections between user sessions and the dishes' ingredients as an interactive graph.
+
+3. **Graph Logic**
+   1. Graph Management
+      - Save Graph (save_graph): Saves the graph to a JSON file for persistence.
+      - Load Graph (load_graph): Loads a graph from a JSON file, creating an empty file if one doesn’t exist.
+      - Add Session (add_session): Adds a session of products to the graph.
+   2. Menu Processing
+      - Structure Menu (structure_menu): Transforms a nested dictionary of dishes and products into a flat, usable structure.
+      - Dishes to Products (dishes_to_products): Extracts all products used in the selected dishes.
+   3. Power Calculation
+      - Calculate Product Power (calculate_products_power): Computes the power of each product based on its frequency across sessions (PageRank-inspired logic).
+      - Calculate Dish Power (calculate_dishes_power): Aggregates product powers to compute the power of dishes.
+   4. Ranking and Categorization
+      - Sort Dishes (sort_dishes): Ranks dishes by their power in descending order.
+      - Divide Dishes by Type (divide_dishes_by_type): Groups dishes into categories based on their type.
+
+     
 
 ## How It Works
 
@@ -33,6 +59,13 @@ This project implements a recommendation system for the "Trapezna," based on the
 3. **Ranking Algorithms**
    - Items are sorted by their computed weight or power.
 
+## Implemented Algorithms
+1. **Graph Storage and Manipulation**
+   - Functions for saving, loading, and updating graphs.
+2. **PageRank Logic**
+   - Calculating the "importance" of nodes (products).
+3. **Aggregating node importance to evaluate dish relevance**
+   - Ranking and Categorization: Sorting and grouping dishes by importance and type.
 
 ## Split Tasks
 1. **UI**
