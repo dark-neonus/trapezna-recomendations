@@ -74,7 +74,7 @@ This project implements a recommendation system for the "Trapezna," based on the
    - How to implement algorithms for converting dishes into products and calculating ranks - distributed by Iya and Oleksiy.
 3. **Graph**
    - Create logic of graph and working with graph file - Maria.
-4. **Graph**
+4. **Graph visualization**
    - Visualization of graph - Daria.
 
 ## Technologies Used
