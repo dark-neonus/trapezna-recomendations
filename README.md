@@ -15,7 +15,7 @@ This project implements a recommendation system for the "Trapezna," based on the
    - Displays the connections between user sessions and the dishes' ingredients as an interactive graph.
 
 3. **Graph Logic**
-   - 1. Graph Management
+   1. Graph Management
    - Save Graph (save_graph): Saves the graph to a JSON file for persistence.
    - Load Graph (load_graph): Loads a graph from a JSON file, creating an empty file if one doesn’t exist.
    - Add Session (add_session): Adds a session of products to the graph.
