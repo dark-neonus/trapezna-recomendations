@@ -16,18 +16,18 @@ This project implements a recommendation system for the "Trapezna," based on the
 
 3. **Graph Logic**
    1. Graph Management
-   - Save Graph (save_graph): Saves the graph to a JSON file for persistence.
-   - Load Graph (load_graph): Loads a graph from a JSON file, creating an empty file if one doesn’t exist.
-   - Add Session (add_session): Adds a session of products to the graph.
+      - Save Graph (save_graph): Saves the graph to a JSON file for persistence.
+      - Load Graph (load_graph): Loads a graph from a JSON file, creating an empty file if one doesn’t exist.
+      - Add Session (add_session): Adds a session of products to the graph.
    2. Menu Processing
-   - Structure Menu (structure_menu): Transforms a nested dictionary of dishes and products into a flat, usable structure.
-   - Dishes to Products (dishes_to_products): Extracts all products used in the selected dishes.
+      - Structure Menu (structure_menu): Transforms a nested dictionary of dishes and products into a flat, usable structure.
+      - Dishes to Products (dishes_to_products): Extracts all products used in the selected dishes.
    3. Power Calculation
-   - Calculate Product Power (calculate_products_power): Computes the power of each product based on its frequency across sessions (PageRank-inspired logic).
-   - Calculate Dish Power (calculate_dishes_power): Aggregates product powers to compute the power of dishes.
+      - Calculate Product Power (calculate_products_power): Computes the power of each product based on its frequency across sessions (PageRank-inspired logic).
+      - Calculate Dish Power (calculate_dishes_power): Aggregates product powers to compute the power of dishes.
    4. Ranking and Categorization
-   - Sort Dishes (sort_dishes): Ranks dishes by their power in descending order.
-   - Divide Dishes by Type (divide_dishes_by_type): Groups dishes into categories based on their type.
+      - Sort Dishes (sort_dishes): Ranks dishes by their power in descending order.
+      - Divide Dishes by Type (divide_dishes_by_type): Groups dishes into categories based on their type.
 
      
 
