@@ -34,24 +34,24 @@ def organise_graph(graph_data):
     return edge_list
 
 
-def create_scene():
+def create_scene(graph_data):
     """
     Creates and renders a scene with a graph visualization.
 
     The function sets up a simple graph with nodes (sessions and products) and edges
     that represent relationships between them. It uses Manim's Graph class to visualize
     the graph and plays the animation.
-
+    Args:
+        graph_data(dict): a dict with sessions
     Returns:
         Scene: The scene object with the graph animation.
-    """
-    scene = Scene()  # Create a new scene object
-
-    # Example graph data (sessions and associated products)
-    graph_data = {
+    Example:
+        graph_data = {
         "session_1": ["product_1", "product_2", "product_6"],
         "session_2": ["product_7", "product_9"],
     }
+    """
+    scene = Scene()  # Create a new scene object
 
     edge_list = organise_graph(graph_data)
 
@@ -65,7 +65,12 @@ def create_scene():
 
     return scene
 
-
+# Example graph data (sessions and associated products)
+graph_data = {
+    "session_1": ["product_1", "product_2", "product_6"],
+    "session_2": ["product_7", "product_9"],
+}
 # Create the scene and render it
-scene = create_scene()
-scene.render(True)
+if __name__ == '__main__':
+    scene = create_scene(graph_data)
+    scene.render(True)
