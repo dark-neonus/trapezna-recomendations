@@ -36,61 +36,113 @@ This project implements a recommendation system for the "Trapezna," based on the
 
 ## Split Tasks
 1. **UI**
-   - Nazar took over the implementation of the interface.
+   - Nazar took over the implementation of the interface and program loop.
 2. **PageRank**
    - How to implement algorithms for converting dishes into products and calculating ranks - distributed by Iya and Oleksiy.
 3. **Graph**
-   - creation of a popularity graph and implementation of the output - Maria and Daria.
+   - Create logic of graph and working with graph file - Maria.
+4. **Graph**
+   - Visualization of graph - Daria.
 
 ## Technologies Used
 
 - **Programming Language:** Python
-- **Graph Libraries:** graphviz (for graph visualization)
+- **Graph Libraries:** graphviz and manim (for graph visualization)
 
 ## Installation
 
-1. Clone the repository:
+1. ### Clone the repository:
    ```bash
    git clone https://github.com/dark-neonus/trapezna-recomendations.git
    cd trapezna-recomendations
    ```
 
-2. Install required dependencies:
-   ### Install the Necesarry Library: graphviz
-   ```bash
-   pip install graphviz
-   ```
-   #### Instalation steps:
-   ##### Windows
-   1. Download the Graphviz installer from Graphviz Downloads.
-   2. Run it through and follow the prompt.
-   3. Add the Graphviz bin directory to your system PATH.
+Here’s the updated README section with instructions for activating the virtual environment on different systems:
 
-   ##### MacOS: use Homebrew
+---
+
+2. ### Create virtual environment
+   > Be aware that the way of calling python may be different on different systems.  
+   > For Linux and MacOS, use `python` or `python3`. For Windows, use `python` or `py`. Further we will use `python` to show you commands, please, use one that suites your system.
+
+   Now, using the appropriate python command for your system, run the following command in your repository folder (e.g., `trapezna-recomendations`):
+
    ```bash
-   brew install graphviz
-   ```
-   ##### Linux:
-   - Debian-based:
-   ```bash
-   sudo apt-get install graphviz
-   ```
-   - Red Hat-based:
-   ```bash
-   sudo yum install graphviz
+   python -m venv .venv
    ```
 
-3. Run the application:
+   **Activate the virtual environment**:
+   - On **Linux/MacOS**:
+     ```bash
+     source .venv/bin/activate
+     ```
+   - On **Windows (Command Prompt)**:
+     ```cmd
+     .venv\Scripts\activate
+     ```
+   - On **Windows (PowerShell)**:
+     ```powershell
+     .venv\Scripts\Activate.ps1
+     ```
+
+   After activation, the command prompt will show the virtual environment name (e.g., `(venv)`), indicating that the environment is active.
+
+3. ### Install required dependencies:
+   #### Install Graphviz
+   Follow instruction from [official graphviz site](https://graphviz.org/download/) to install it for your system.
+   #### Install Graphviz
+   Follow instruction from [official manim site](https://docs.manim.community/en/stable/installation.html) to install it for your system.
+
+   After that go to app folder and activate `.venv` environment(if this wasn't done yet).
+   To finally install all required python libraries, run next command:
    ```bash
-   python3 main.py
+   pip install graphviz manim
+   ``` 
+
+
+4. ### Run the application:
+   ```bash
+   python main.py
    ```
+Here's the completed **Usage** section with detailed instructions for the application's command-line options:
+
+---
 
 ## Usage
+   > Make sure that you run the program with its environment activated.  
 
-1. Launch the application.
-2. Browse and order dishes from "Trapezna."
-3. For the next time view personalized dish recommendations based on your preferences.
-4. Explore the graph visualization to understand ingredient connections.
+   ### Standard User Interface
+   To run the standard user interface, use the following command:
+   ```bash
+   python main.py
+   ```
+
+   ### Terminal Options
+   The Trapezna Recommendation app has several terminal options to modify its behavior. Below is a list of available commands:
+
+   1. ### Help Command
+      Display information about available terminal options:
+      ```bash
+      python main.py --help
+      ```
+
+   2. ### Visualization Mode
+      Run a visualization animation for the graph stored in `graph.json`:
+      ```bash
+      python main.py --visualization
+      ```
+
+   3. ### Save Visualization as PNG
+      Generate and save a PNG file representing the graph stored in `graph.json`:
+      ```bash
+      python main.py --visualization_png
+      ```
+
+   4. ### Clear Graph Data
+      Clear the current `graph.json` file, removing all preferences and data:
+      ```bash
+      python main.py --clear
+      ```
 
 ## Feedback 
    - Our assistant Anton - has been helping us throughout the whole work and he always answered our questions. He offered valuable advice on structuring project, splitting tasks and realization of PageRank algorithm. The assistant offered suggestions to enhance the documentation and made sure all project requirements were addressed.
