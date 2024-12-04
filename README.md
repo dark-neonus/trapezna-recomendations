@@ -25,6 +25,23 @@ This project implements a recommendation system for the "Trapezna," based on the
 4. **Recommendations:**
    - Generates a ranked list of recommended dishes for the user.
 
+## Principles of Discrete Mathematics
+1. **Graph Theory**
+   - Nodes (products) and edges (session relationships) form the core of the analysis.
+2. **Node Weighting**
+   - Importance is derived from connections, akin to PageRank.
+3. **Ranking Algorithms**
+   - Items are sorted by their computed weight or power.
+
+
+## Split Tasks
+1. **UI**
+   - Nazar took over the implementation of the interface.
+2. **PageRank**
+   - How to implement algorithms for converting dishes into products and calculating ranks - distributed by Iya and Oleksiy.
+3. **Graph**
+   - creation of a popularity graph and implementation of the output - Maria and Daria.
+
 ## Technologies Used
 
 - **Programming Language:** Python
@@ -74,6 +91,10 @@ This project implements a recommendation system for the "Trapezna," based on the
 2. Browse and order dishes from "Trapezna."
 3. For the next time view personalized dish recommendations based on your preferences.
 4. Explore the graph visualization to understand ingredient connections.
+
+## Feedback 
+   - Our assistant Anton - has been helping us throughout the whole work and he always answered our questions. He offered valuable advice on structuring project, splitting tasks and realization of PageRank algorithm. The assistant offered suggestions to enhance the documentation and made sure all project requirements were addressed.
+
 
 ## Thanks to developers
 
