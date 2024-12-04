@@ -1,7 +1,10 @@
 """ Main script that runs program """
 
 import argparse
-from ui import main_loop, clear_graph
+from ui import main_loop, clear_graph, GRAPH_FILE
+from graph_visualization_png import generate_graph_png, organise_graph
+from graph_visualization_animation import create_scene
+from graph_logic import load_graph
 
 
 def main():
@@ -26,9 +29,10 @@ def main():
     args = parser.parse_args()
 
     if args.visualization:
-        pass
+        scene = create_scene(load_graph(GRAPH_FILE))
+        scene.render(True)
     elif args.visualization_png:
-        pass
+        generate_graph_png(organise_graph(load_graph(GRAPH_FILE)), "graph")
     elif args.clear:
         clear_graph()
     else:

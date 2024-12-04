@@ -6,6 +6,7 @@ from ui_tools.matrix import (Matrix, create_matrix, fill_matrix,
                              draw_matrix_on_screen, draw_matrix_on_matrix)
 from ui_tools.ui_toolbox import create_text_field, add_frame_to_matrix
 import graph_logic
+from graph_visualization_animation import create_scene
 
 
 
@@ -219,7 +220,8 @@ def show_visualization():
     """ Show visualization of current graph
     by calling visualization part of program
     """
-    pass
+    scene = create_scene(graph_logic.load_graph(GRAPH_FILE))
+    scene.render(True)
 
 def clear_graph():
     """ Clear graph with preferences
