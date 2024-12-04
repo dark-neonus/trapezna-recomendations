@@ -4,6 +4,15 @@
 
 This project implements a recommendation system for the "Trapezna," based on the PageRank algorithm. The system helps users discover dishes tailored to their preferences by analyzing user sessions and connections between the ingredients in various dishes. Additionally, the application offers a visualization feature to explore these connections as a graph.
 
+## Steps We Implemented
+
+1. **Graph Modeling**
+   - Designed a graph structure to represent sessions and product relationships.
+2. **PageRank Algorithms**
+   - Implemented logic to rank products and dishes based on their connections and importance.
+3. **Recommendations**
+   - Created mechanisms for sorting and recommending dishes based on their calculated importance.
+
 ## Features
 
 1. **Personalized Recommendations:**
